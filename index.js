@@ -160,7 +160,7 @@
         Hogan = window.Hogan
         $.get(TEMPLATE_FILENAME, function(tpl) {
           render(tpl, function(html) {
-            var app_html = $(html).find('#app').html()
+            var app_html = $(html).filter('#app').html()
             $('#app').html(app_html)
           })
         })
