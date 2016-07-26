@@ -75,10 +75,6 @@
     return labels_matching(RE_SYSTEM, issue)
   }
 
-  function init_systems(memo, name) {
-    return memo.concat({name:name, status:'ok'})
-  }
-
 
   function get_issues(cb) {
     getJSON(REPO_API + '/issues', cb)
