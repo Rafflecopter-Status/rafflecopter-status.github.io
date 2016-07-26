@@ -15,6 +15,7 @@
 
   var Hogan
 
+  function TOKEN() { if (IS_NODE) { return process.env['STATUSPAGE_TOKEN'] }}
 
 
   // Helpers
@@ -26,12 +27,16 @@
       var request = require('request')
       var opts = {
         url: url, 
-        qs: {'access_token': '513ea9d6145de633cafbbfd6fc0d7c5d52ea4d0e'},
+        qs: {'access_token': TOKEN()},
         headers: {"User-Agent":"statuspage"}
       }
+
       request(opts, function(err, response, body) {
         if (err) 
           throw err;
+
+        if (response.statusCode != 200)
+          throw "Error "+response.statusCode+": "+response.statusMessage;
 
         cb(JSON.parse(body))
       })
