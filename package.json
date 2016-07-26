@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node index.js",
-    "serve": "node node_modules/st/bin/server.js"
+    "serve": "npm run build; node node_modules/st/bin/server.js"
   },
   "repository": {
     "type": "git",

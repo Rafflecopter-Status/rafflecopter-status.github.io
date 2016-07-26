@@ -17,35 +17,37 @@
         </a>
     </header>
 
-    <section class="board">
-      {{#systems}}
-      <div class="system system--status-{{status}}">{{name}}</div>
-      {{/systems}}
-    </section>
+    <section id="app">
+      <section class="board">
+        {{#systems}}
+        <div class="system system--status-{{status}}">{{name}}</div>
+        {{/systems}}
+      </section>
 
-    <section class="details">
-      <h2 class="details__header">Current Incidents</h2>
+      <section class="details">
+        <h2 class="details__header">Current Incidents</h2>
 
-      {{#open_issues}}
-      <div class="issue issue--status-{{statuspage_status}}">
-        <h3 class="issue__title ">{{title}}</h3>
-        <div class="issue_systems">
-          <h4>Affected Systems:</h4>
-          <ul>
-            {{#statuspage_systems}}
-            <li>{{.}}</li>
-            {{/statuspage_systems}}
-          </ul>
+        {{#open_issues}}
+        <div class="issue issue--status-{{statuspage_status}}">
+          <h3 class="issue__title ">{{title}}</h3>
+          <div class="issue_systems">
+            <h4>Affected Systems:</h4>
+            <ul>
+              {{#statuspage_systems}}
+              <li>{{.}}</li>
+              {{/statuspage_systems}}
+            </ul>
+          </div>
+          <p class="issue_body">{{body}}</p>
         </div>
-        <p class="issue_body">{{body}}</p>
-      </div>
-      {{/open_issues}}
+        {{/open_issues}}
+      </section>
+
+      <!-- TODO: incident history -->
+
+      <footer class="main-footer">
+        <!-- TODO: footer -->
+      </footer>
     </section>
-
-    <!-- TODO: incident history -->
-
-    <footer class="main-footer">
-      <!-- TODO: footer -->
-    </footer>
   </body>
 </html>

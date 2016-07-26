@@ -11,6 +11,8 @@
   var RE_SYSTEM = /System\((.+)\)/
     , RE_STATUS = /Status\((.+)\)/
 
+  var POLL_INTERVAL = 2 * 60 * 1000 // 2 minutes. GH rate limit = 1/minute
+
   var Hogan
 
 
@@ -22,7 +24,11 @@
   function getJSON(url, cb) {
     if (IS_NODE) {
       var request = require('request')
-      var opts = {url:url, headers:{"User-Agent":"statuspage"}}
+      var opts = {
+        url: url, 
+        qs: {'access_token': '513ea9d6145de633cafbbfd6fc0d7c5d52ea4d0e'},
+        headers: {"User-Agent":"statuspage"}
+      }
       request(opts, function(err, response, body) {
         if (err) 
           throw err;
@@ -32,7 +38,7 @@
     }
 
     if (IS_BROWSER) {
-      $.getJSON(url, cb)
+      $.getJSON(url, cb).fail(function(xhr) { throw "ERROR: " + xhr.status })
     }
   }
 
@@ -144,13 +150,19 @@
     }
 
     if (IS_BROWSER) {
-      Hogan = window.Hogan
-      $.get(TEMPLATE_FILENAME, function(tpl) {
-        render(tpl, function(html) {
-          var app_html = $(html).find('#app').html()
-          $('#app').html(app_html)
+      window.statuspage_update = function() {
+        console.log("Updating page...")
+        Hogan = window.Hogan
+        $.get(TEMPLATE_FILENAME, function(tpl) {
+          render(tpl, function(html) {
+            var app_html = $(html).find('#app').html()
+            $('#app').html(app_html)
+          })
         })
-      })
+      }
+
+      window.statuspage_update()
+      setInterval(window.statuspage_update, POLL_INTERVAL)
     }
   }
 
