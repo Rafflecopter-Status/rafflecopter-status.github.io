@@ -6,7 +6,7 @@
 `npm install` the first time to get started
 
 - `npm run build` to build a static version of the site
-- `npm run serve` to build once and serve locally
+- `npm run serve` to build once and serve locally at [localhost:1337](htt://localhost:1337)
 
 ## Notes
 
