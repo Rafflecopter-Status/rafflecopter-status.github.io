@@ -1,5 +1,12 @@
 # Rafflecopter System Status
 
+## Usage
+
+To indicate a problem with one of the systems, [open a new issue](https://github.com/Rafflecopter-Status/rafflecopter-status.github.io/issues) and
+use the appropriate labels for the affected service(s) and severity levels.
+
+Then run `npm run build`, commit, and push. Everything happens on `master` branch.
+
 
 ## Development
 
