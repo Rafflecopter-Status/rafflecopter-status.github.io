@@ -1,0 +1,37 @@
+/* ---------------------------------------------------------------------------- */
+/* Color Palette */
+
+$grey-dark:   #3F5670;    $black: $grey-dark;
+$grey-mid:    #7F929D;    /*TODO: needed? */
+$grey-light:  #D5D9E8;
+$grey-ghost:  #FBFCFE;
+
+$blue:   #0095FF;
+$green:  #41A300;   $ok: $green;
+$orange: #FF903C;   $degraded: $orange;
+$red:    #FF5A3C;   $outage: $red;
+
+
+/* ---------------------------------------------------------------------------- */
+/* Font Config */
+
+$font-fallback: "Helvetica Neue", Helvetica, sans-serif;
+$font-ui:       "proxima-nova", $font-fallback;
+$font-small:    $font-fallback;
+
+$weight-light:  300;
+$weight-normal: 400;     $weight-regular: $weight-normal;
+$weight-medium: 500;
+$weight-bold:   600;
+
+
+/* Typography */
+$font-size-base: 16px;
+
+
+
+/* ---------------------------------------------------------------------------- */
+/* Layout */
+
+$width--main-column: 780px;
+$width--large-column: 940px;

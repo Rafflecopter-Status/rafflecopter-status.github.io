@@ -1,0 +1,186 @@
+@import "normalize";
+@import "config";
+
+/* ---------------------------------------------------------------------------- */
+/* General */
+
+#app {
+  position: relative;
+}
+
+
+/* ---------------------------------------------------------------------------- */
+/* Header */
+
+$_subscr-width: 160px;
+$_logowrap-width: $width--large-column - $_subscr-width;
+
+.main-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  border-bottom: 1px solid $grey-light;
+  box-sizing: border-box;
+
+  &__logo {
+    flex: 1;
+    max-width: calc($_logowrap-width);
+    img {
+      width: 360px;
+    }
+  }
+
+  &__subscribe {
+    display: block;
+    width: $_subscr-width;
+    padding: 9px 0;
+    color: $black;
+    border: 1px solid $grey-light;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 13px;
+    font-weight: $weight-bold;
+    text-decoration: none;
+    text-align: center;
+  }
+}
+
+
+/* ---------------------------------------------------------------------------- */
+/* Status Overview */
+
+.board {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: $width--large-column;
+  height: 300px;
+  margin: 1px auto 0;
+  padding: 50px 0;
+  box-sizing: border-box;
+  overflow-y: hidden;
+
+  &:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    background: $grey-ghost;
+    width: 100%;
+    height: 300px;
+    left: 0;
+    top: 0;
+  }
+}
+
+.system {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-basis: 300px;
+  width: 300px;
+  height: 80px;
+  padding: 0 30px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid $grey-light;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 17px;
+    height: 12px;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+  }
+
+  /* BEM : Elements */
+  &__title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: $weight-normal;
+  }
+
+  /* BEM : Mods */
+  @each $icon in (ok, degraded, down) {
+    &--status-$(icon) {
+      &:after {
+        background: url('../static/svg/$(icon).svg') no-repeat;
+      }
+    }
+  }
+
+  &--status-ok {
+    color: $black;
+    .system__caption {
+      display: none;
+    }
+  }
+
+  &--status-degraded,
+  &--status-outage {
+    background: white;
+
+    .system__title {
+      font-weight: $weight-medium;
+    }
+  }
+
+  &--status-degraded {
+    color: $degraded;
+    border-color: $degraded;
+    box-shadow: 0px 1px 0px 0px rgba(#000, 0.10), 
+          inset 0px 2px 1px 0px #FFFFFF, 
+          inset 0px -2px 0px 0px rgba($degraded, 0.05);
+
+    &:after {
+      background: url('../static/svg/degraded.svg') no-repeat;
+      height: 15.5px;
+    }
+  }
+
+  &--status-outage {
+    color: $outage;
+    border-color: $outage;
+    box-shadow: 0px 1px 0px 0px rgba(#000, 0.10), 
+          inset 0px 2px 1px 0px #FFFFFF, 
+          inset 0px -2px 0px 0px rgba($outage, 0.05);
+
+    &:after {
+      background: url('../static/svg/outage.svg') no-repeat;
+      height: 18px;
+    }
+  }
+}
+
+
+
+/* ---------------------------------------------------------------------------- */
+/* Incidents */
+
+.details {
+  max-width: $width--main-column;
+  margin: 0 auto;
+}
+
+/*<section class="details">
+  <h2 class="details__header">Current Incidents</h2>
+
+  <div class="issue issue--status-degraded">
+    <h3 class="issue__title ">Testing</h3>
+    <div class="issue_systems">
+      <h4>Affected Systems:</h4>
+      <ul>
+        <li>Admin Dashboard</li>
+      </ul>
+    </div>
+    <p class="issue_body">here is a description. words words words words words.</p>
+  </div>
+</section>*/

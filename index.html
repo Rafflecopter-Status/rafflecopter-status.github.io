@@ -5,26 +5,46 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hogan.js/3.0.2/hogan.min.js"></script>
     <script src="index.js"></script>
+    <link rel="stylesheet" href="out/main.css">
   </head>
 
   <body>
     <header class="main-header">
       <div class="main-header__logo">
-        <img src="logo.svg" />
-        <a class="main-header__subscribe"
-           href="https://github.com/Rafflecopter-Status/rafflecopter-status.github.io/issues">
-          Subscribe to Updates?
-        </a>
+        <img src="static/svg/logo.svg" />
+      </div>
+      <a class="main-header__subscribe"
+         href="https://github.com/Rafflecopter-Status/rafflecopter-status.github.io/issues">
+        Subscribe to Updates?
+      </a>
     </header>
 
     <section id="app">
       <section class="board">
-        <div class="system system--status-degraded">Admin Dashboard</div>
-        <div class="system system--status-ok">Entry Form</div>
-        <div class="system system--status-ok">Entries API</div>
-        <div class="system system--status-outage">Auto-Collection</div>
-        <div class="system system--status-ok">Email Delivery</div>
-        <div class="system system--status-ok">Homepage</div>
+        <div class="system system--status-degraded">
+          <h3 class="system__title">Admin Dashboard</h3>
+          <span class="system__caption">Info here</span>
+        </div>
+        <div class="system system--status-ok">
+          <h3 class="system__title">Entry Form</h3>
+          <span class="system__caption">Info here</span>
+        </div>
+        <div class="system system--status-ok">
+          <h3 class="system__title">Entries API</h3>
+          <span class="system__caption">Info here</span>
+        </div>
+        <div class="system system--status-ok">
+          <h3 class="system__title">Auto-Collection</h3>
+          <span class="system__caption">Info here</span>
+        </div>
+        <div class="system system--status-ok">
+          <h3 class="system__title">Email Delivery</h3>
+          <span class="system__caption">Info here</span>
+        </div>
+        <div class="system system--status-ok">
+          <h3 class="system__title">Homepage</h3>
+          <span class="system__caption">Info here</span>
+        </div>
       </section>
 
       <section class="details">
