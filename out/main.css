@@ -534,7 +534,7 @@ td, th {
   
   height: 80px;
   margin-bottom: 20px;
-  padding: 0 30px;
+  padding: 0 29px;
   background: rgba(255, 255, 255, 0.5);
   border: 1px solid #D5D9E8;
   border-radius: 4px;
@@ -581,7 +581,7 @@ td, th {
   width: 17px;
   height: 12px;
   top: 50%;
-  right: 30px;
+  right: 29px;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
@@ -590,6 +590,12 @@ td, th {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 400;
+}
+
+.system__caption {
+  margin-bottom: -4px;
+  padding-top: 5px;
+  font-size: 0.875rem;
 }
 
 .system--status-ok {}
