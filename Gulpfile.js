@@ -3,7 +3,7 @@ var gulp = require('gulp'),
     autoprefixer = require('autoprefixer'),
     cssnext = require('cssnext'),
     precss = require('precss'),
-    pxtorem = require('postcss-pxtorem')
+    pxtorem = require('postcss-pxtorem'),
     hexrgba = require('postcss-hexrgba');
 
 
