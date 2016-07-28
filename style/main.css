@@ -8,6 +8,80 @@
   position: relative;
 }
 
+.btn {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+  user-select: none;
+
+  &--secondary {
+    height: 42px;
+    padding: 0 22px 0 19px;
+
+    color: $grey-mid;
+    background: white;
+    border: 1px solid $grey-light;
+    box-shadow: 0  1px 2px 0 rgba($black, 0.11), 
+          inset 0 -1px 3px 0 rgba($black, 0.06);
+    border-radius: 100px;
+
+    font-family: $font-fallback;
+    font-size: 14px;
+    font-weight: $weight-bold;
+    text-decoration: none;
+
+    &:hover {
+      border-color: #ced2e0;
+      box-shadow: 0  1px 2px 0 rgba($black, 0.11), 
+            inset 0 -1px 4px 0 rgba($black, 0.08);
+
+      .btn__label {
+        @mixin desc-underlines rgba($grey-mid, 0.625), white, 1px, false;
+        box-shadow: inset 0  0px 0 0 white, 
+                    inset 0 -1px 0 0 rgba($grey-mid, 0.625);
+      }
+    }
+
+    &:active {
+      box-shadow: 0 1px 2px rgba($black, 0.1),
+            inset 0 4px 8px 0 rgba($black, 0.025);
+
+      @include BEM(btn, label) {
+        transform: scaleX(0.993) scaleY(0.975) translateY(0.5px);
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    .btn__label {
+      position: relative;
+    }
+
+    .btn__label:before {
+      content: '';
+      position: absolute;
+      display: inline-block;
+      width: 10px;
+      height: 8px;
+      top: 4px;
+      left: -10px;
+      transform: translateX(-100%);
+      fill: red;
+      background: url('../static/svg/arrow.svg') no-repeat;
+    }
+  }
+
+  &--with-icon {
+    padding-left: 38px;
+  }
+}
+
 
 /* ---------------------------------------------------------------------------- */
 /* Header */
@@ -16,22 +90,19 @@ $_subscr-width: 178px;
 $_logowrap-width: $width--large-column - $_subscr-width;
 
 .main-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @mixin flex column, center, center;
   width: 100%;
   padding: 20px;
   
   border-bottom: 1px solid rgba($grey-light, 0.5);
   box-sizing: border-box;
 
-  @media (min-width : $(tablet)){
+  @media (min-width: $(tablet)){
     flex-direction: row;
     height: 100px;
   }
 
-  @media (min-width : $(desktop)){
+  @media (min-width: $(desktop)){
     padding: 0;
   }
 
@@ -44,7 +115,7 @@ $_logowrap-width: $width--large-column - $_subscr-width;
       width: 100%;
     }
     
-    @media (min-width : $(tablet)){
+    @media (min-width: $(tablet)){
       max-width: calc($_logowrap-width);
       padding-bottom: 0;
 
@@ -78,17 +149,14 @@ $_logowrap-width: $width--large-column - $_subscr-width;
   box-sizing: border-box;
   overflow-y: hidden;
 
-  @media (min-width : $(tablet)){
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  @media (min-width: $(tablet)){
+    @mixin flex row, space-between, center;
     flex-wrap: wrap;
     margin: 0;
     padding: 50px 0;
   }
 
-  @media (min-width : $(desktop)){
+  @media (min-width: $(desktop)){
     width: $width--large-column;
     height: 300px;
     margin: 1px auto 0;
@@ -103,7 +171,7 @@ $_logowrap-width: $width--large-column - $_subscr-width;
     left: 0;
     top: 0;
 
-    @media (min-width : $(desktop)){
+    @media (min-width: $(desktop)){
       width: 100%;
       height: 300px;
     }
@@ -125,7 +193,7 @@ $_logowrap-width: $width--large-column - $_subscr-width;
   box-sizing: border-box;
   font-family: $font-ui;
 
-  @media (min-width : $(tablet)){
+  @media (min-width: $(tablet)){
     flex-basis: 350px;
     flex-grow: 1;
     margin: 0 20px 20px;
@@ -134,7 +202,7 @@ $_logowrap-width: $width--large-column - $_subscr-width;
     }
   }
 
-  @media (min-width : $(desktop)){
+  @media (min-width: $(desktop)){
     flex-basis: 300px;
     flex-grow: initial;
     width: 300px;
@@ -225,7 +293,7 @@ $_logowrap-width: $width--large-column - $_subscr-width;
   max-width: $width--main-column;
   margin: 50px 20px 0;
 
-  @media (min-width : $(width--main-column)){
+  @media (min-width: $(width--main-column)){
     margin: 52px auto 0;
   }
 
@@ -233,19 +301,20 @@ $_logowrap-width: $width--large-column - $_subscr-width;
   &__header {
     position: relative;
     margin: 0;
+    color: $black;
     font-family: $font-ui;
     font-size: 30px;
     font-weight: $weight-normal;
+  }
 
-    &:after {
-      content: '';
-      position: absolute;
-      display: block;
-      width: 100%;
-      height: 1px;
-      bottom: -2px;
-      background: $grey-light;
-    }
+  &__header:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 1px;
+    bottom: -2px;
+    background: $grey-light;
   }
 }
 
@@ -254,9 +323,14 @@ $_logowrap-width: $width--large-column - $_subscr-width;
 
   &__title {
     margin: 34px 0 0;
+    color: $black;
     font-size: 20px;
     font-weight: $weight-bold;
     line-height: 24px;
+  }
+
+  &__systems {
+    color: $black;
   }
 
   &__body {
@@ -267,17 +341,96 @@ $_logowrap-width: $width--large-column - $_subscr-width;
   }
 }
 
-/*<section class="details">
-  <h2 class="details__header">Current Incidents</h2>
+.history-btn {
+  margin-top: 60px;
+}
 
-  <div class="issue issue--status-degraded">
-    <h3 class="issue__title ">Testing</h3>
-    <div class="issue_systems">
-      <h4>Affected Systems:</h4>
-      <ul>
-        <li>Admin Dashboard</li>
-      </ul>
-    </div>
-    <p class="issue_body">here is a description. words words words words words.</p>
-  </div>
-</section>*/
+
+/* ---------------------------------------------------------------------------- */
+/* Footer */
+
+.main-footer {
+  margin-top: 120px;
+  color: rgba($grey-mid, 0.75);
+  border-top: 1px solid rgba($grey-light, 0.5);
+
+  @media (min-width: $(tablet)){
+    height: $footer-height;
+  }
+
+  &:hover {
+    opacity: 1;
+    color: $grey-mid;
+
+    .main-footer__links {
+      opacity: 1;
+    }
+  }
+
+  &:before { /* hover target */
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    height: resolve($footer-height / 2);
+  }
+
+  .main-footer__links {
+    @mixin flex row, center, center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    opacity: 0.5;
+    transition: opacity 0.15s ease-in-out;
+
+    @media (max-width: $(tablet)){
+      flex-direction: column;
+      flex: 1;
+      padding: 20px 0;
+    }
+  }
+
+  .main-footer__link {
+    display: inline-block;
+    padding: 10px 0;
+    color: $grey-mid;
+    border: 1px solid transparent;
+    border-top: none;
+    border-bottom: none;
+    font-family: $font-small;
+    font-size: 13px;
+    text-decoration: none;
+
+    @media (min-width: $(tablet)){
+      padding: 0 10px;
+      height: resolve($footer-height - 1px);
+      max-height: 59px;
+      line-height: $footer-height;
+    }
+
+    &:hover {
+      text-decoration: underline;
+      color: $blue;
+
+      @media (min-width: $(tablet)){
+        background: $grey-ghost;
+        border: 1px solid rgba($blue, 0.06);
+        border-top: none;
+        border-bottom: none;          
+      }
+    }
+
+    &:active {
+      transform: scale(0.967);
+    }
+  }
+}
+
+.sticky-footer {
+  .main-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+}

@@ -35,6 +35,7 @@ $font-size-base: 16px;
 
 $width--main-column: 780px;
 $width--large-column: 940px;
+$footer-height: 60px;
 
 
 
@@ -46,3 +47,52 @@ $tablet: 768px;
 $desktop-sm: 960px;
 $desktop: 1024px;
 $desktop-lg: 1200px;
+
+/* ---------------------------------------------------------------------------- */
+/* Mixins (https://github.com/jonathantneal/precss) */
+
+/* Descender underlines: allows descenders to overlay underline */
+@define-mixin desc-underlines $color, $bg, $size, $hover {
+  
+  @if $color == "reset" { /* use "reset" to remove underlines as needed */
+    text-shadow: initial;
+    box-shadow: initial;
+  } @else {
+
+    /* create stroke around letters */
+    text-shadow: 1px 0.25px 0 $bg,
+                -1px 0.25px 0 $bg, 
+                 2px 0      0 $bg, 
+                -2px 0      0 $bg;  
+
+    /* applies the underline */
+    box-shadow: inset 0 (-($(size) - 1)) 0 0 $bg, 
+                inset 0 (-$(size)) 0 0 $color;
+
+    @if $hover == true { /* handle the hover programmatically */
+      &:hover {
+        box-shadow: inset 0 (-$size) 0 0 $bg, 
+                    inset 0 (-($size + 1)) 0 0 $color;
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+/* Allows us to pass various flexbox attributes. */
+/* @content allows us to pass others that are less used */
+@define-mixin flex $direction:null, $justify:null, $align:null {
+  display: flex;
+  @if $direction != null {
+      flex-direction: $direction;
+  }
+  @if $justify != null {
+      justify-content: $justify;
+  }
+  @if $align != null {
+      align-items: $align;
+  }
+}

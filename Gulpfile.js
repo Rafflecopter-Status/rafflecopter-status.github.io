@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     precss = require('precss'),
     pxtorem = require('postcss-pxtorem'),
     hexrgba = require('postcss-hexrgba');
+    math = require('postcss-math');
 
 
 var src = {
@@ -13,11 +14,12 @@ var src = {
 
 gulp.task('css', function () {
   var processors = [
-      autoprefixer,
       cssnext,
       precss,
       pxtorem,
-      hexrgba
+      hexrgba,
+      math,
+      autoprefixer
   ];
   return gulp.src(src.css + 'main.css')
       .pipe(postcss(processors))

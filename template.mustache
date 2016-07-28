@@ -38,7 +38,7 @@
         {{#open_issues}}
         <div class="issue issue--status-{{statuspage_status}}">
           <h3 class="issue__title ">{{title}}</h3>
-          <div class="issue_systems">
+          <div class="issue__systems">
             <h4>Affected Systems:</h4>
             <ul>
               {{#statuspage_systems}}
@@ -49,32 +49,39 @@
           <p class="issue__body">{{body}}</p>
         </div>
         {{/open_issues}}
-      </section>
 
-      <a href="https://github.com/Rafflecopter-Status/rafflecopter-status.github.io/issues"
-         class="btn btn--secondary">
-        Full Incident History
-      </a>
+        <a href="https://github.com/Rafflecopter-Status/rafflecopter-status.github.io/issues"
+         class="history-btn btn btn--secondary btn--with-icon">
+           <span class="btn__label">Full Incident History</span>
+        </a>
+
+      </section>
 
       <footer class="main-footer">
         <ul class="main-footer__links">
-          <li class="main-footer__link">
-            <a href="https://rafflecopter.com/">Home</a>
+          <li>
+            <a href="https://rafflecopter.com/"
+               class="main-footer__link">Home</a>
           </li>
-          <li class="main-footer__link">
-            <a href="https://www.rafflecopter.com/terms-of-service">Terms</a>
+          <li>
+            <a href="https://www.rafflecopter.com/terms-of-service"
+               class="main-footer__link">Terms</a>
           </li>
-          <li class="main-footer__link">
-            <a href="https://www.rafflecopter.com/privacy-policy">Privacy</a>
+          <li>
+            <a href="https://www.rafflecopter.com/privacy-policy"
+               class="main-footer__link">Privacy</a>
           </li>
-          <li class="main-footer__link">
-            <a href="https://www.rafflecopter.com/contact-us">Contact</a>
+          <li>
+            <a href="https://www.rafflecopter.com/contact-us"
+               class="main-footer__link">Contact</a>
           </li>
-          <li class="main-footer__link">
-            <a href="http://kb.rafflecopter.com">Help</a>
+          <li>
+            <a href="http://kb.rafflecopter.com"
+               class="main-footer__link">Help</a>
           </li>
-          <li class="main-footer__link">
-            <a href="http://blog.rafflecopter.com">Blog</a>
+          <li>
+            <a href="http://blog.rafflecopter.com"
+               class="main-footer__link">Blog</a>
           </li>
         </ul>
       </footer>

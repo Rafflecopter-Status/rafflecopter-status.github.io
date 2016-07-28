@@ -171,7 +171,6 @@ figure {
  */
 
 hr {
-  -moz-box-sizing: content-box;
   box-sizing: content-box;
   height: 0;
 }
@@ -297,8 +296,6 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
   /* 2 */
   box-sizing: content-box;
 }
@@ -370,12 +367,117 @@ td, th {
 /* Layout */
 /* ---------------------------------------------------------------------------- */
 /* Responsiveness */
+/* ---------------------------------------------------------------------------- */
+/* Mixins (https://github.com/jonathantneal/precss) */
+/* Descender underlines: allows descenders to overlay underline */
+/* Allows us to pass various flexbox attributes. */
+/* @content allows us to pass others that are less used */
 
 /* ---------------------------------------------------------------------------- */
 /* General */
 
 #app {
   position: relative;
+}
+
+.btn {
+  position: relative;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none
+}
+
+.btn--secondary {
+  height: 42px;
+  padding: 0 22px 0 19px;
+  color: #7F929D;
+  background: white;
+  border: 1px solid #D5D9E8;
+  box-shadow: 0  1px 2px 0 rgba(63,86,112, 0.11), 
+          inset 0 -1px 3px 0 rgba(63,86,112, 0.06);
+  border-radius: 100px;
+  font-family: "Helvetica Neue",Helvetica,sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn--secondary .btn__label {
+  position: relative;
+}
+
+.btn--secondary .btn__label:before {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  width: 10px;
+  height: 8px;
+  top: 4px;
+  left: -10px;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  fill: red;
+  background: url('../static/svg/arrow.svg') no-repeat;
+}
+
+.btn--secondary:hover {
+  border-color: #ced2e0;
+  box-shadow: 0  1px 2px 0 rgba(63,86,112, 0.11), 
+            inset 0 -1px 4px 0 rgba(63,86,112, 0.08);
+}
+
+.btn--secondary:hover .btn__label {
+  /* create stroke around letters */
+  text-shadow: 1px 0.25px 0 white,
+                -1px 0.25px 0 white, 
+                 2px 0      0 white, 
+                -2px 0      0 white;
+  /* applies the underline */
+  box-shadow: inset 0 (-(1px - 1)) 0 0 white, 
+                inset 0 (-1px) 0 0 rgba(127,146,157, 0.625);
+  box-shadow: inset 0  0px 0 0 white, 
+                    inset 0 -1px 0 0 rgba(127,146,157, 0.625);
+}
+
+.btn--secondary:hover .btn__label:focus {
+  outline: none;
+}
+
+.btn--secondary:active {
+  box-shadow: 0 1px 2px rgba(63,86,112, 0.1),
+            inset 0 4px 8px 0 rgba(63,86,112, 0.025);
+
+  @include BEM(btn, label) {
+    -webkit-transform: scaleX(0.993) scaleY(0.975) translateY(0.5px);
+            transform: scaleX(0.993) scaleY(0.975) translateY(0.5px);
+  }
+}
+
+.btn--secondary:focus {
+  outline: none;
+}
+
+.btn--with-icon {
+  padding-left: 38px;
 }
 
 
@@ -403,18 +505,18 @@ td, th {
   box-sizing: border-box
 }
 
-@media (min-width : 768px){
+@media (min-width: 768px){
 
   .main-header {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-    -ms-flex-direction: row;
-    flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
     height: 100px;
   }
   }
 
-@media (min-width : 1024px){
+@media (min-width: 1024px){
 
   .main-header {
     padding: 0;
@@ -423,8 +525,8 @@ td, th {
 
 .main-header__logo {
   -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   max-width: 100%;
   padding-bottom: 15px;
 }
@@ -433,7 +535,7 @@ td, th {
   width: 100%;
 }
 
-@media (min-width : 768px) {
+@media (min-width: 768px) {
 
   .main-header__logo {
     max-width: calc(940px - 178px);
@@ -469,7 +571,7 @@ td, th {
   overflow-y: hidden
 }
 
-@media (min-width : 768px){
+@media (min-width: 768px){
 
   .board {
     display: -webkit-box;
@@ -477,22 +579,22 @@ td, th {
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-    -ms-flex-direction: row;
-    flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
     -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
     -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
+        flex-wrap: wrap;
     margin: 0;
     padding: 50px 0;
   }
   }
 
-@media (min-width : 1024px){
+@media (min-width: 1024px){
 
   .board {
     width: 940px;
@@ -511,7 +613,7 @@ td, th {
   top: 0;
 }
 
-@media (min-width : 1024px) {
+@media (min-width: 1024px) {
 
   .board:after {
     width: 100%;
@@ -546,14 +648,14 @@ td, th {
   /* BEM : Mods */
 }
 
-@media (min-width : 768px){
+@media (min-width: 768px){
 
   .system {
     -ms-flex-preferred-size: 350px;
-    flex-basis: 350px;
+        flex-basis: 350px;
     -webkit-box-flex: 1;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
     margin: 0 20px 20px;
   }
 
@@ -562,14 +664,14 @@ td, th {
   }
   }
 
-@media (min-width : 1024px){
+@media (min-width: 1024px){
 
   .system {
     -ms-flex-preferred-size: 300px;
-    flex-basis: 300px;
+        flex-basis: 300px;
     -webkit-box-flex: initial;
-    -ms-flex-positive: initial;
-    flex-grow: initial;
+        -ms-flex-positive: initial;
+            flex-grow: initial;
     width: 300px;
     margin: 0;
   }
@@ -583,7 +685,7 @@ td, th {
   top: 50%;
   right: 29px;
   -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 
 .system__title {
@@ -670,7 +772,7 @@ td, th {
   /* BEM : Elements */
 }
 
-@media (min-width : 780px){
+@media (min-width: 780px){
 
   .details {
     margin: 52px auto 0;
@@ -680,6 +782,7 @@ td, th {
 .details__header {
   position: relative;
   margin: 0;
+  color: #3F5670;
   font-family: "proxima-nova","Helvetica Neue",Helvetica,sans-serif;
   font-size: 1.875rem;
   font-weight: 400;
@@ -701,9 +804,14 @@ td, th {
 
 .issue__title {
   margin: 34px 0 0;
+  color: #3F5670;
   font-size: 1.25rem;
   font-weight: 600;
   line-height: 1.5rem;
+}
+
+.issue__systems {
+  color: #3F5670;
 }
 
 .issue__body {
@@ -713,17 +821,126 @@ td, th {
   line-height: 1.5rem;
 }
 
-/*<section class="details">
-  <h2 class="details__header">Current Incidents</h2>
+.history-btn {
+  margin-top: 60px;
+}
 
-  <div class="issue issue--status-degraded">
-    <h3 class="issue__title ">Testing</h3>
-    <div class="issue_systems">
-      <h4>Affected Systems:</h4>
-      <ul>
-        <li>Admin Dashboard</li>
-      </ul>
-    </div>
-    <p class="issue_body">here is a description. words words words words words.</p>
-  </div>
-</section>*/
+
+/* ---------------------------------------------------------------------------- */
+/* Footer */
+
+.main-footer {
+  margin-top: 120px;
+  color: rgba(127,146,157, 0.75);
+  border-top: 1px solid rgba(213,217,232, 0.5);
+}
+
+.main-footer .main-footer__links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  opacity: 0.5;
+  -webkit-transition: opacity 0.15s ease-in-out;
+  transition: opacity 0.15s ease-in-out
+}
+
+.main-footer .main-footer__link {
+  display: inline-block;
+  padding: 10px 0;
+  color: #7F929D;
+  border: 1px solid transparent;
+  border-top: none;
+  border-bottom: none;
+  font-family: "Helvetica Neue",Helvetica,sans-serif;
+  font-size: 0.8125rem;
+  text-decoration: none
+}
+
+.main-footer .main-footer__link:hover {
+  text-decoration: underline;
+  color: #0095FF;
+}
+
+.main-footer .main-footer__link:active {
+  -webkit-transform: scale(0.967);
+          transform: scale(0.967);
+}
+
+@media (min-width: 768px){
+
+  .main-footer {
+    height: 60px;
+  }
+  }
+
+.main-footer:hover {
+  opacity: 1;
+  color: #7F929D;
+}
+
+.main-footer:hover .main-footer__links {
+  opacity: 1;
+}
+
+.main-footer:before {
+  /* hover target */
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  height: 30px;
+}
+
+@media (max-width: 768px){
+
+  .main-footer .main-footer__links {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    padding: 20px 0;
+  }
+    }
+
+@media (min-width: 768px){
+
+  .main-footer .main-footer__link {
+    padding: 0 10px;
+    height: 59px;
+    max-height: 59px;
+    line-height: 3.75rem;
+  }
+    }
+
+@media (min-width: 768px) {
+
+  .main-footer .main-footer__link:hover {
+    background: #FBFCFE;
+    border: 1px solid rgba(0,149,255, 0.06);
+    border-top: none;
+    border-bottom: none;
+  }
+}
+
+.sticky-footer .main-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
